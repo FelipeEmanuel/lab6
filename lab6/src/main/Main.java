@@ -27,8 +27,8 @@ public class Main {
 				confirmarVacinacao();
 			if(op == 4)
 				habilitarVacinacao();
-			//if(op == 5)
-				//alterarUsuario();
+			if(op == 5)
+				alterarUsuario();
 			if(op <= 0 || op > 5)
 				break;
 			System.out.println();
@@ -86,7 +86,7 @@ public class Main {
 					
 					bol = false;
 				}else {
-					System.out.println("Dose não pode ser aplicada no usuário:" + p.getNome() + " -  " + p.getCpf());
+					System.out.println("Dose não pode ser aplicada no usuário " + p.getNome() + " - CPF: " + p.getCpf());
 					System.out.println("Status atual: " + p.getStatus().getStatus());
 					bol = false;
 				}
@@ -97,6 +97,72 @@ public class Main {
 		}
 	}
 	
+	public static void alterarUsuario() {
+		System.out.println("Inserir CPF do usuário:");
+		String cpf = scan.next();
+		Pessoa pessoa = new Pessoa(cpf);
+		for(Pessoa p: pessoas) {
+			if(p.equals(pessoa)) {
+				boolean opc = true;
+				do {	
+				System.out.println("SELECIONE UMA OPÇÃO:");
+				System.out.println("1-ALTERAR NOME");
+				System.out.println("2-ALTERAR IDADE");
+				System.out.println("3-ALTERAR COMORBIDADE");
+				System.out.println("4-ALTERAR ENDEREÇO");
+				System.out.println("5-ALTERAR CARTÃO DO SUS");
+				System.out.println("6-ALTERAR EMAIL");
+				System.out.println("7-ALTERAR TELEFONE");
+				System.out.println("8-ALTERAR PROFISSÃO");
+				System.out.println("0-RETORNAR A PAGINA INICIAL");
+				int op = scan.nextInt();
+				if(op == 1) {
+					System.out.println("Nome:");
+					p.setNome(scan.next());
+					break;	
+				}
+				if(op == 2) {
+					System.out.println("Idade:");
+					p.setIdade(scan.nextInt());
+					break;
+				}
+				if(op == 3) {
+					System.out.println("Comorbidade:");
+					p.setComorbidades(scan.next());
+					break;
+				}
+				if(op == 4) {
+					System.out.println("Endereço:");
+				 	p.setEndereco(scan.next());
+				 	break;
+				}
+				if(op == 5) {
+					System.out.println("Cartão do SUS:");
+				 	p.setCartaoSUS(scan.next());
+				 	break;
+				}
+				if(op == 6) {
+					System.out.println("Email:");
+					p.setEmail(scan.next());
+					break;
+				}
+				if(op == 7) {
+					System.out.println("Telefone:");
+					p.setTelefone(scan.next());
+					break;
+				}
+				if(op == 8) {
+					System.out.println("Profissão:");
+					p.setProfissao(scan.next());
+					break;
+				}
+				if(op == 0)
+					opc = false;
+				}while(opc);
+			}
+		}
+	}
+
 	public static void habilitarVacinacao() {
 		System.out.println("1-Habilitar idade para primeira dose.");
 		System.out.println("2-Habilitar profissão para a primeira dose.");
@@ -119,7 +185,7 @@ public class Main {
 			}
 		}
 		
-		System.out.println("Pessoas com a comorbidade " + comorb + "agora estão aptas a receber a vacina!");
+		System.out.println("Pessoas com a comorbidade " + comorb + " agora estão aptas a receber a vacina!");
 	}
 
 	private static void habilitarIdade() {
